@@ -1,0 +1,27 @@
+{
+    "name": "mg-virtual-ssy",
+    "version": "1.0.0",
+    "description": "서샘이 관리자 차트 / 문경 버추얼",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/coworkerweb-publish/mg-virtual-ssy.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/coworkerweb-publish/mg-virtual-ssy/issues"
+    },
+    "homepage": "https://github.com/coworkerweb-publish/mg-virtual-ssy#readme",
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.3.3",
+        "prettier": "^3.9.6",
+        "prettier-plugin-tailwindcss": "^0.8.1",
+        "tailwindcss": "^4.3.3"
+    }
+}

@@ -1,0 +1,373 @@
+@import "tailwindcss";
+
+@theme {
+    --color-black-400: #2b2b2b;
+    --color-black-500: #202020;
+    --color-black-700: #04020c;
+    --color-red-500: #fd4438;
+    --color-red-600: #c33131;
+    --color-blue-100: #f3f8ff;
+    --color-blue-200: #c7c9d9;
+    --color-blue-300: #0077ff;
+    --color-blue-400: #7cbafb;
+    --color-blue-500: #3395ff;
+    --color-blue-600: #1677ff;
+    --color-blue-700: #3f4fff;
+    --color-blue-800: #3377ff;
+    --color-gray-300: #f0f0f0;
+    --color-gray-400: #f1f1f5;
+    --color-gray-500: #f7f9f8;
+    --color-gray-600: #efefef;
+    --color-gray-700: #d9d9d9;
+    --color-gray-800: #c0c0c0;
+    --color-gray-900: #333333;
+    --color-yellow-500: #c2ac85;
+
+    --font-point: "KoreaInstituteOfMachineryAndMaterials", sans-serif;
+}
+
+@layer components {
+    /*  사이드 네비게이션 */
+    .ad-gnb-item {
+        @apply flex cursor-pointer flex-col not-last:border-b not-last:border-black/10;
+        .ad-gnb-title {
+            @apply flex items-center justify-between py-3.5 text-sm;
+            & > svg {
+                @apply size-5;
+            }
+            &.active {
+                @apply text-blue-500;
+                svg {
+                    @apply rotate-180;
+                }
+            }
+        }
+    }
+    .ad-snb {
+        @apply hidden flex-col pb-4 text-base font-medium;
+        .snb-list {
+            @apply px-4 py-2 hover:rounded-lg hover:bg-blue-500/10;
+            &.active {
+                @apply rounded-lg bg-blue-500 text-white;
+            }
+        }
+        &.active {
+            @apply flex;
+        }
+    }
+    /*         헤더        */
+    .breadcrumb {
+        @apply flex gap-5;
+
+        .breadcrumb-item {
+            @apply relative opacity-40;
+            &:not(:last-child)::after {
+                @apply absolute top-1/2 -right-3 size-1 -translate-y-1/2 rounded-full bg-black/40 content-[''];
+            }
+            &.active {
+                @apply font-medium opacity-100;
+            }
+        }
+    }
+    /*  공통 카드 레이아웃 */
+    .card-layout {
+        @apply flex w-full flex-col gap-2 rounded-xl bg-white p-8 shadow-[0_2px_6px_rgba(0,0,0,0.03)];
+        .card-title {
+            @apply flex flex-col gap-2;
+            .title {
+                @apply text-2xl font-medium;
+            }
+            .desc {
+                @apply text-sm opacity-40;
+            }
+        }
+    }
+
+    /* 게시판 현황 section */
+    .grid-divider {
+        @apply relative flex items-start justify-between text-sm not-last:pr-13;
+        &:not(:last-child)::after {
+            @apply absolute top-1/2 right-0 block h-20 w-px -translate-y-1/2 bg-gray-400 content-[''];
+        }
+    }
+    .shortcut-btn {
+        @apply flex size-9 items-center justify-center rounded-full border border-gray-600 p-1.5 hover:bg-black hover:text-white;
+    }
+
+    /* 드롭다운 */
+    .dropdown {
+        @apply relative min-w-20 cursor-pointer;
+        &.active {
+            @apply rounded-t-lg border border-b-0 border-yellow-500;
+        }
+        .dropdown-list {
+            @apply absolute right-0 z-20 mt-1.5 hidden w-full cursor-pointer rounded-lg border border-gray-600 bg-white p-1 shadow-xs;
+
+            &.active {
+                @apply block;
+            }
+            li {
+                @apply rounded-md px-3 py-1.5 text-sm hover:bg-blue-300/10 hover:text-blue-600;
+            }
+        }
+    }
+
+    /*  범례  */
+    .legend-bg {
+        @apply flex items-center gap-1 rounded-full bg-gray-500 px-2 py-1.5 text-xs font-medium;
+    }
+
+    /* 체크박스 커스텀  */
+    .custom-cbx {
+        @apply flex size-4 items-center justify-center rounded-sm border border-blue-200;
+
+        & > svg {
+            @apply hidden size-3 stroke-3 text-white;
+        }
+    }
+    input:checked + .custom-cbx {
+        @apply border-blue-500 bg-blue-500;
+        & > svg {
+            @apply block;
+        }
+    }
+
+    /* 체크박스 삭제 버튼   */
+    .cbx-delete {
+        @apply pointer-events-none bg-gray-300 text-gray-800;
+        &.active {
+            @apply bg-black-500 pointer-events-auto text-white;
+        }
+    }
+
+    /* 테이블 공통 리스트 shape */
+    .table-list {
+        @apply grid items-center gap-1.5 px-4 py-3 text-center text-xs;
+    }
+    /*  공지 사항  */
+    .notice-table {
+        .notice-list {
+            @apply grid grid-cols-[0.5fr_1fr_7fr_1.5fr] items-center gap-1;
+            > :nth-child(3) {
+                @apply truncate text-left;
+            }
+            > :nth-child(4) {
+                @apply text-blue-600;
+            }
+            &:not(:first-child) {
+                @apply hover:bg-blue-500/10;
+                > :nth-child(2) {
+                    @apply pointer-events-none font-medium text-red-500;
+                }
+            }
+            &.top-fixed {
+                @apply bg-blue-100;
+                > :nth-child(2) {
+                    @apply text-blue-600;
+                }
+            }
+        }
+    }
+
+    /* 최근 작성 게시판  */
+    .recent-list {
+        @apply grid-cols-[1fr_1fr_1.5fr_0.5fr] text-left not-first:hover:bg-blue-500/10 [&>*:nth-child(4)]:text-blue-600;
+        > :nth-child(1),
+        > :nth-child(3) {
+            @apply truncate;
+        }
+    }
+
+    /* 방문자 상세 정보 */
+    .visitor-list {
+        @apply grid-cols-[2fr_4fr_1fr_1fr_1fr] text-left;
+        > :nth-child(1),
+        > :nth-child(2) {
+            @apply truncate;
+        }
+    }
+    /*   문의 관리  */
+    .inquiry-list {
+        @apply grid-cols-[0.5fr_1.5fr_1fr_1.5fr_1.5fr_1.5fr_1.5fr_1.5fr] gap-2 text-left [&>span]:truncate;
+    }
+    /* IP 차단 테이블 */
+    .block-list {
+        @apply text-black-500/80 grid-cols-[2fr_4fr_1fr] text-left text-base;
+    }
+
+    /* 페이지네이션 */
+    .pagination {
+        @apply flex justify-center gap-2;
+        .page-btn {
+            @apply text-black-500/40 flex size-8 items-center justify-center rounded-sm border border-gray-600 text-sm;
+            > svg {
+                @apply size-5;
+            }
+            &.active {
+                @apply bg-black-500 text-white;
+            }
+        }
+    }
+    /* ------------문경 버추얼 스튜디오 ----------------- */
+    /* 블러 카드  */
+    .blur-container {
+        @apply flex w-full flex-col rounded-3xl border border-white/10 bg-white/5 p-3 backdrop-blur-xs;
+        .blur-wrapper {
+            @apply bg-black-700/10 flex w-full items-center justify-between gap-4 rounded-2xl border border-white/20 px-4 shadow-2xl backdrop-blur-3xl backdrop-brightness-60 backdrop-saturate-150 md:px-8;
+        }
+    }
+    .drop-year {
+        @apply absolute top-full left-0 z-20 hidden max-h-40 w-full overflow-y-auto rounded-b-lg border border-t-0 border-yellow-500 bg-white text-xl md:text-2xl;
+        &.active {
+            @apply block;
+        }
+        li {
+            @apply px-3 py-1 hover:bg-yellow-500/30 hover:text-yellow-500;
+        }
+    }
+}
+
+@layer utilities {
+    .highlight-text {
+        @apply text-[32px] tracking-[-2.5%];
+        .value {
+            @apply text-[52px] text-blue-500;
+        }
+    }
+    .btn-shape {
+        @apply flex cursor-pointer items-center justify-center gap-2 rounded-lg p-2 px-3 hover:opacity-70;
+        &.blue {
+            @apply bg-blue-600 text-white;
+        }
+        &.black {
+            @apply bg-black-500 text-white;
+        }
+    }
+    .input-border {
+        @apply relative flex items-center justify-center gap-2 rounded-lg border border-gray-600 p-2 px-3;
+        select {
+            @apply cursor-pointer appearance-none bg-transparent outline-none;
+        }
+        i,
+        svg {
+            @apply pointer-events-none;
+        }
+    }
+    .today-badge {
+        @apply absolute top-0 left-0 rounded-tl-lg rounded-br-lg bg-blue-700/12 px-2 py-1 text-sm font-medium text-blue-700;
+    }
+}
+/*  캘린더 설정  */
+#calendar .fc-prev-button:focus,
+#calendar .fc-next-button:focus {
+    box-shadow: none;
+    outline: none;
+}
+/* 메인페이지 캘린더  */
+.main-calendar {
+    @apply w-full shrink-0;
+    --fc-border-color: transparent;
+    --fc-page-bg-color: transparent;
+    --fc-neutral-bg-color: transparent;
+
+    --fc-button-bg-color: transparent;
+    --fc-button-border-color: transparent;
+    --fc-button-text-color: inherit;
+    --fc-button-hover-bg-color: transparent;
+    --fc-button-hover-border-color: transparent;
+
+    --fc-button-active-bg-color: transparent;
+    --fc-button-active-border-color: transparent;
+    .fc-toolbar-chunk {
+        @apply flex items-center;
+        .fc-toolbar-title {
+            @apply text-2xl;
+        }
+    }
+    .fc-scroller {
+        @apply overflow-hidden;
+    }
+    .fc-button-primary {
+        @apply ml-0 flex items-center justify-center border-none bg-transparent opacity-70 shadow-none;
+    }
+
+    .fc-button-primary:hover,
+    .fc-button-primary:focus,
+    .fc-button-primary:not(:disabled):active,
+    .fc-button-primary:not(:disabled).fc-button-active {
+        @apply border-none bg-transparent shadow-none;
+    }
+
+    .fc-calIcon-button {
+        @apply pointer-events-none inline-block size-4 cursor-default bg-[url(/assets/images/icon/calendar.png)] bg-contain bg-center bg-no-repeat opacity-70 content-[''];
+    }
+
+    .fc table.fc-col-header,
+    .fc table.fc-col-header thead,
+    .fc table.fc-col-header tr,
+    .fc th.fc-col-header-cell {
+        @apply border-x-0 border-t-0 bg-transparent;
+    }
+    .fc-scrollgrid-section-header > th {
+        @apply border-0 border-b border-white/40;
+    }
+
+    .fc-daygrid-day-frame {
+        @apply box-border h-10 min-h-10;
+    }
+    .fc-daygrid-day-top {
+        @apply absolute inset-0 flex items-center justify-center;
+    }
+
+    .fc-day-today {
+        @apply bg-transparent;
+        .fc-daygrid-day-frame {
+            @apply overflow-hidden rounded-lg border-2 border-white/40 bg-red-600;
+        }
+    }
+    .fc-bg-event {
+        border-radius: 5px;
+    }
+}
+
+/*  대관 예약   */
+.reservation-calendar {
+    @apply w-full;
+    --fc-border-color: transparent;
+    --fc-today-bg-color: rgba(63, 79, 255, 0.08);
+    --fc-daygrid-event-dot-width: 6px;
+
+    .fc-scroller {
+        @apply overflow-hidden;
+    }
+    .fc-col-header {
+        @apply rounded-t-2xl bg-black text-white;
+    }
+    .fc-scrollgrid-sync-inner {
+        @apply py-3.5;
+    }
+    .fc-day {
+        @apply overflow-hidden rounded-lg;
+    }
+
+    .fc-daygrid-day-frame {
+        @apply relative m-px min-h-28 rounded-lg p-1;
+    }
+    .fc-daygrid-day.is-selected {
+        .fc-daygrid-day-frame {
+            @apply bg-red-600/12 text-red-600;
+        }
+    }
+    .is-edge {
+        .fc-daygrid-day-frame {
+            @apply border-2 border-red-600 font-bold;
+        }
+    }
+
+    .fc-daygrid-day-top {
+        @apply absolute inset-0 flex items-center justify-center pt-2;
+    }
+    .fc-daygrid-day-number {
+        @apply text-xl font-medium;
+    }
+}

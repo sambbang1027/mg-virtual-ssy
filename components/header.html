@@ -1,0 +1,43 @@
+<div class="bg-black-700 fixed top-0 z-500 h-20 w-full p-5 md:h-25 2xl:px-30 2xl:py-11">
+    <div class="flex h-full items-center justify-between">
+        <h1>
+            <a href="/pages/mvs.html" class="w-30 md:w-34.5">
+                <img
+                    src="/assets/images/mvs_logo.png"
+                    class="size-full object-contain"
+                    alt="문경 버추얼 스튜디오 로고"
+                />
+            </a>
+        </h1>
+
+        <nav
+            class="bg-black-700 max-md:font-point hidden max-md:fixed max-md:inset-0 max-md:h-dvh max-md:w-screen md:block"
+            data-nav
+        >
+            <button type="button" class="absolute top-5 right-5 md:hidden" data-mobile-close>
+                <img src="/assets/images/icon/close.png" alt="모바일 메뉴 닫기" />
+            </button>
+            <ul class="flex h-full flex-col items-center justify-center gap-14 text-white md:flex-row">
+                <li><a href="#">스튜디오</a></li>
+                <li><a href="#">포트폴리오</a></li>
+                <li><a href="#">기술</a></li>
+                <li><a href="/pages/reservation.html">예약</a></li>
+                <li><a href="#">소식</a></li>
+                <li><a href="#">문의</a></li>
+            </ul>
+        </nav>
+
+        <button type="button" data-mobile-menu class="block md:hidden">
+            <img src="/assets/images/icon/menu.png" alt="모바일 메뉴" />
+        </button>
+    </div>
+</div>
+
+<script>
+    function toggleMobileMenu() {
+        $("[data-nav]").toggleClass("hidden");
+        $("body").toggleClass("overflow-hidden");
+    }
+
+    $("[data-mobile-menu], [data-mobile-close]").click(toggleMobileMenu);
+</script>

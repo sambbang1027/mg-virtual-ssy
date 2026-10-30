@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=0"
+        />
+
+        <link href="/assets/images/favicon.ico" rel="icon" />
+        <!--  관리자 페이지 검색엔진 차단 태그  -->
+        <meta name="robots" content="noindex, nofollow" />
+        <title>관리자 대시보드</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <link rel="stylesheet" type="text/css" href="/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="/src/output.css" />
+    </head>
+
+    <body>
+        <div id="wrap">
+            <div class="flex min-h-screen">
+                <aside id="navigation"></aside>
+
+                <div class="flex-1 bg-gray-500 px-5">
+                    <header id="admin-header"></header>
+                    <main>
+                        <!-- 페이지 상단  -->
+                        <section class="flex items-center justify-between py-5">
+                            <h2 class="text-[32px] font-medium">홈</h2>
+                            <a href="/pages/mvs.html" class="rounded-lg bg-blue-600 p-3 text-white hover:opacity-70">
+                                사이트 바로가기
+                            </a>
+                        </section>
+                        <!--  게시판 현황  -->
+                        <section class="card-layout min-w-7xl">
+                            <div class="card-title">
+                                <h2 class="title">게시판 현황</h2>
+                                <p class="desc">현재 게시판을 기준으로 집계됩니다.</p>
+                            </div>
+                            <div class="grid grid-cols-4 gap-13">
+                                <div class="grid-divider">
+                                    <div>
+                                        <h3 class="font-semibold">총 게시물 현황</h3>
+                                        <p class="highlight-text">
+                                            <span class="value">48</span>
+                                            개
+                                        </p>
+                                        <p class="flex flex-row gap-2">
+                                            <span class="font-medium opacity-40">최근 게시글</span>
+                                            <span>2026-06-04</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="grid-divider">
+                                    <div>
+                                        <h3 class="font-semibold">게시판A</h3>
+                                        <p class="highlight-text">
+                                            <span class="value">22</span>
+                                            개
+                                        </p>
+                                        <p class="flex flex-row gap-2">
+                                            <span class="font-medium opacity-40">최근 게시글</span>
+                                            <span>2026-06-04</span>
+                                        </p>
+                                    </div>
+
+                                    <a href="#" aria-label="바로가기" class="shortcut-btn">
+                                        <i data-lucide="arrow-up-right"></i>
+                                    </a>
+                                </div>
+                                <div class="grid-divider flex">
+                                    <div>
+                                        <h3 class="font-semibold">공지사항</h3>
+                                        <p class="highlight-text">
+                                            <span class="value">14</span>
+                                            개
+                                        </p>
+                                        <p class="flex flex-row gap-2">
+                                            <span class="font-medium opacity-40">최근 게시글</span>
+                                            <span>2026-06-04</span>
+                                        </p>
+                                    </div>
+
+                                    <a href="#" aria-label="바로가기" class="shortcut-btn">
+                                        <i data-lucide="arrow-up-right"></i>
+                                    </a>
+                                </div>
+                                <div class="grid-divider flex">
+                                    <div>
+                                        <h3 class="font-semibold">자주 묻는 질문</h3>
+                                        <p class="highlight-text">
+                                            <span class="value">12</span>
+                                            개
+                                        </p>
+                                        <p class="flex flex-row gap-2">
+                                            <span class="font-medium opacity-40">최근 게시글</span>
+                                            <span>2026-06-04</span>
+                                        </p>
+                                    </div>
+
+                                    <a href="#" aria-label="바로가기" class="shortcut-btn">
+                                        <i data-lucide="arrow-up-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="mt-5 mb-16 grid grid-cols-3 gap-5">
+                            <!--  누적 방문자  -->
+                            <section class="card-layout col-span-2 gap-4">
+                                <div class="flex flex-row items-center justify-between gap-1">
+                                    <div class="card-title">
+                                        <h2 class="title">누적 방문자</h2>
+                                        <p class="desc">동일한 PC에서 하루에 여러번 방문해도 1회로 체크됩니다.</p>
+                                    </div>
+
+                                    <!--  필터링 검색  -->
+                                    <form action="#" method="get" class="flex items-center gap-3">
+                                        <div class="dropdown" data-period-dropdown>
+                                            <button type="button" class="input-border">
+                                                <span>주간</span>
+                                                <i data-lucide="chevron-down" class="size-4"></i>
+                                            </button>
+
+                                            <ul class="dropdown-list">
+                                                <li>주간</li>
+                                                <li>월간</li>
+                                            </ul>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <input type="date" name="date" id="start-date" class="input-border" />
+                                            <span>~</span>
+                                            <input type="date" name="date" id="end-date" class="input-border" />
+                                        </div>
+                                        <button type="submit" class="btn-shape blue">검색</button>
+                                    </form>
+                                </div>
+                                <!--  범례  -->
+                                <div class="flex gap-1.5">
+                                    <div class="legend-bg">
+                                        <span class="size-4 rounded-full border-[3px] border-blue-500 bg-white"></span>
+                                        <span>방문자</span>
+                                    </div>
+                                    <div class="legend-bg">
+                                        <span class="size-4 rounded-full bg-blue-500"></span>
+                                        <span>PC</span>
+                                    </div>
+                                    <div class="legend-bg">
+                                        <span class="size-4 rounded-full bg-blue-400"></span>
+                                        <span>MOBILE</span>
+                                    </div>
+                                </div>
+
+                                <div class="relative h-100 w-full">
+                                    <canvas class="visitor-chart"></canvas>
+                                </div>
+                            </section>
+                            <!--  방문자 추이 & 공지사항  & 최근 작성 게시판  -->
+                            <div class="card-layout col-span-1 row-span-3 h-full">
+                                <section class="flex flex-col gap-6 border-b border-gray-700 pb-8">
+                                    <div class="card-title">
+                                        <h2 class="title">방문자 추이</h2>
+                                    </div>
+
+                                    <div class="relative h-70 w-full">
+                                        <canvas class="donut-chart"></canvas>
+                                        <div
+                                            class="highlight-text absolute top-1/2 left-1/2 -translate-1/2 font-medium"
+                                        >
+                                            <span class="value">62</span>
+                                            <span>명</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-2 text-sm font-medium">
+                                        <div class="flex justify-between gap-1.5">
+                                            <div class="legend-bg">
+                                                <span class="size-4 rounded-full bg-blue-500"></span>
+                                                <span>PC</span>
+                                            </div>
+                                            <span>58.1%</span>
+                                        </div>
+                                        <div class="flex justify-between gap-1.5">
+                                            <div class="legend-bg">
+                                                <span class="size-4 rounded-full bg-blue-400"></span>
+                                                <span>MOBILE</span>
+                                            </div>
+                                            <span>42.9%</span>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="cbx-board flex flex-col gap-6 border-b border-gray-700 py-8">
+                                    <div class="card-title flex-row justify-between">
+                                        <h2 class="title">공지사항</h2>
+                                        <div class="flex gap-2">
+                                            <button type="button" class="btn-shape cbx-delete">선택 삭제</button>
+                                            <button type="button" class="btn-shape blue w-20">등록</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul class="notice-table">
+                                            <li class="text-black-500/40 notice-list table-list font-medium">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-all"
+                                                        name="notice-cbx"
+                                                        class="check-all peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span>고정</span>
+                                                <span>제목</span>
+                                            </li>
+                                            <li class="table-list notice-list top-fixed">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_1"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span class="fixed-text">Y</span>
+                                                <a href="#">코워커웹 창립5주년 공식 홈페이지 리뉴얼</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="table-list notice-list top-fixed">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_2"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span class="fixed-text">Y</span>
+                                                <a href="#">코워커웹 경영혁신형 중소기업(메인비즈) 확인서 발급</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="table-list notice-list top-fixed">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_3"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span class="fixed-text">Y</span>
+                                                <a href="#">코워커웹 SBS BIZ 채널 고수열전 방송출연</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="table-list notice-list">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_4"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span>N</span>
+                                                <a href="#">테스트 공지사항입니다.</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="table-list notice-list">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_5"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span>N</span>
+                                                <a href="#">코워커웹 창업기업확인서 발급</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="table-list notice-list">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_6"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span>N</span>
+                                                <a href="#">코워커웹 벤처기업확인서 발급</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="table-list notice-list">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_7"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span>N</span>
+                                                <a href="#">코워커웹 산업디자인전문회사 증명서 발급</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="table-list notice-list">
+                                                <label class="flex-center">
+                                                    <input
+                                                        id="notice-item_8"
+                                                        name="notice-cbx"
+                                                        class="cbx-item peer sr-only"
+                                                        type="checkbox"
+                                                    />
+                                                    <div class="custom-cbx">
+                                                        <i data-lucide="check"></i>
+                                                    </div>
+                                                    <span class="sr-only">게시글 선택</span>
+                                                </label>
+                                                <span>N</span>
+                                                <a href="#">코워커웹 ISO9001 및 ISO 14001 인증 획득</a>
+                                                <a href="#">수정</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+                                <section class="flex flex-col gap-6 pt-8">
+                                    <div class="card-title flex-row justify-between">
+                                        <h2 class="title">최근 작성 게시판</h2>
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li class="recent-list text-black-500/40 table-list font-medium">
+                                                <span>제목</span>
+                                                <span>분류</span>
+                                                <span>등록일시</span>
+                                            </li>
+                                            <li class="recent-list table-list">
+                                                <span>홈페이지 이용 안내</span>
+                                                <span>공지사항</span>
+                                                <span>2026-06-05 09:17:30</span>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="recent-list table-list">
+                                                <span>서비스 소개 자료</span>
+                                                <span>자료실</span>
+                                                <span>2026-06-05 09:17:30</span>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="recent-list table-list">
+                                                <span>점검 안내</span>
+                                                <span>공지사항</span>
+                                                <span>2026-06-05 09:17:30</span>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="recent-list table-list">
+                                                <span>점검 안내</span>
+                                                <span>공지사항</span>
+                                                <span>2026-06-05 09:17:30</span>
+                                                <a href="#">수정</a>
+                                            </li>
+                                            <li class="recent-list table-list">
+                                                <span>점검 안내</span>
+                                                <span>공지사항</span>
+                                                <span>2026-06-05 09:17:30</span>
+                                                <a href="#">수정</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                            <!--  방문자 상세 정보  -->
+                            <section class="card-layout col-span-2 gap-5">
+                                <div class="flex flex-row items-center justify-between gap-1">
+                                    <div class="card-title flex-row items-center gap-4">
+                                        <h2 class="title">방문자 상세 정보</h2>
+                                        <button type="button" class="btn-shape black" data-modal-open>IP 차단</button>
+                                    </div>
+
+                                    <!--  필터링 검색  -->
+                                    <form action="detail_filter" method="get" class="flex items-center gap-3">
+                                        <div class="dropdown" data-period-dropdown>
+                                            <button type="button" class="input-border">
+                                                <span>주간</span>
+                                                <i data-lucide="chevron-down" class="size-4"></i>
+                                            </button>
+
+                                            <ul class="dropdown-list">
+                                                <li>주간</li>
+                                                <li>월간</li>
+                                            </ul>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <input
+                                                type="date"
+                                                name="date"
+                                                id="visitor-start-date"
+                                                class="input-border"
+                                            />
+                                            <span>~</span>
+                                            <input type="date" name="date" id="visitor-end-date" class="input-border" />
+                                        </div>
+                                        <button type="submit" class="btn-shape bg-blue-600 text-white">검색</button>
+                                    </form>
+                                </div>
+                                <ul>
+                                    <li class="table-list text-black-500/40 visitor-list font-medium">
+                                        <span>접속일시</span>
+                                        <span>IP</span>
+                                        <span>접근 경로</span>
+                                        <span>1일 접속 횟수</span>
+                                        <span>접속기기</span>
+                                    </li>
+                                    <li class="table-list visitor-list">
+                                        <span>2026-06-04 09:20</span>
+                                        <span>211.234.196.59</span>
+                                        <span>/</span>
+                                        <span>1</span>
+                                        <span>MOBILE</span>
+                                    </li>
+                                    <li class="table-list visitor-list">
+                                        <span>2026-06-04 09:20</span>
+                                        <span>157.55.39.205</span>
+                                        <span>/</span>
+                                        <span>1</span>
+                                        <span>PC</span>
+                                    </li>
+                                    <li class="table-list visitor-list">
+                                        <span>2026-06-04 09:20</span>
+                                        <span>106.101.196.94</span>
+                                        <span>/</span>
+                                        <span>1</span>
+                                        <span>MOBILE</span>
+                                    </li>
+                                    <li class="table-list visitor-list">
+                                        <span>2026-06-04 09:20</span>
+                                        <span>66.249.74.132</span>
+                                        <span>/service</span>
+                                        <span>3</span>
+                                        <span>PC</span>
+                                    </li>
+                                    <li class="table-list visitor-list">
+                                        <span>2026-06-04 09:20</span>
+                                        <span>39.7.28.137</span>
+                                        <span>/</span>
+                                        <span>1</span>
+                                        <span>MOBILE</span>
+                                    </li>
+                                </ul>
+                                <div class="pagination" id="visitor-pgn"></div>
+                            </section>
+                            <!--  문의관리  -->
+                            <section class="card-layout cbx-board col-span-2 gap-5">
+                                <div class="flex items-center justify-between gap-4">
+                                    <div class="card-title">
+                                        <h2 class="title">문의 관리</h2>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <button type="button" class="btn-shape cbx-delete">선택삭제</button>
+                                        <a href="#" class="btn-shape border border-black/10">목록으로</a>
+                                    </div>
+                                </div>
+                                <ul class="inquiry-table">
+                                    <li class="table-list text-black-500/40 inquiry-list font-medium">
+                                        <label class="flex-center">
+                                            <input
+                                                name="inquiry-cbx"
+                                                id="inquiry-all"
+                                                class="check-all peer sr-only"
+                                                type="checkbox"
+                                            />
+                                            <div class="custom-cbx">
+                                                <i data-lucide="check"></i>
+                                            </div>
+                                            <span class="sr-only">회사 선택</span>
+                                        </label>
+                                        <span>회사명</span>
+                                        <span>이름</span>
+                                        <span>연락처</span>
+                                        <span>필요한 서비스</span>
+                                        <span>프로젝트 예산</span>
+                                        <span>프로젝트 예상 일정</span>
+                                        <span>등록일자</span>
+                                    </li>
+                                    <li class="table-list inquiry-list">
+                                        <label class="flex-center">
+                                            <input
+                                                name="inquiry-cbx"
+                                                id="inquiry-01"
+                                                class="cbx-item peer sr-only"
+                                                type="checkbox"
+                                            />
+                                            <div class="custom-cbx">
+                                                <i data-lucide="check"></i>
+                                            </div>
+                                            <span class="sr-only">회사 선택</span>
+                                        </label>
+                                        <span>회사명</span>
+                                        <span>허은예</span>
+                                        <span>010-3233-4401</span>
+                                        <span>웹사이트(반응형),유지보수</span>
+                                        <span>500만원 - 1,000만원</span>
+                                        <span>3개월 미만</span>
+                                        <span>2026-06-04 09:20</span>
+                                    </li>
+                                    <li class="table-list inquiry-list">
+                                        <label class="flex-center">
+                                            <input
+                                                name="inquiry-cbx"
+                                                id="inquiry-02"
+                                                class="cbx-item peer sr-only"
+                                                type="checkbox"
+                                            />
+                                            <div class="custom-cbx">
+                                                <i data-lucide="check"></i>
+                                            </div>
+                                            <span class="sr-only">회사 선택</span>
+                                        </label>
+                                        <span>리베이션</span>
+                                        <span>양희득</span>
+                                        <span>010-3233-4401</span>
+                                        <span>웹사이트(반응형),SEO 최적화(검색엔진)</span>
+                                        <span>3,000만원 - 5,000만원</span>
+                                        <span>3개월 - 6개월</span>
+                                        <span>2026-06-04 09:20</span>
+                                    </li>
+                                    <li class="table-list inquiry-list">
+                                        <label class="flex-center">
+                                            <input
+                                                name="inquiry-cbx"
+                                                id="inquiry-03"
+                                                class="cbx-item peer sr-only"
+                                                type="checkbox"
+                                            />
+                                            <div class="custom-cbx">
+                                                <i data-lucide="check"></i>
+                                            </div>
+                                            <span class="sr-only">회사 선택</span>
+                                        </label>
+                                        <span>회사명</span>
+                                        <span>문의테스트</span>
+                                        <span>010-3233-4401</span>
+                                        <span>웹사이트(반응형),유지보수</span>
+                                        <span>300만원 - 500만원</span>
+                                        <span>3개월 - 6개월</span>
+                                        <span>2026-06-04 09:20</span>
+                                    </li>
+                                    <li class="table-list inquiry-list">
+                                        <label class="flex-center">
+                                            <input
+                                                name="inquiry-cbx"
+                                                id="inquiry-04"
+                                                class="cbx-item peer sr-only"
+                                                type="checkbox"
+                                            />
+                                            <div class="custom-cbx">
+                                                <i data-lucide="check"></i>
+                                            </div>
+                                            <span class="sr-only">회사 선택</span>
+                                        </label>
+                                        <span>회사명</span>
+                                        <span>문의테스트</span>
+                                        <span>010-3233-4401</span>
+                                        <span>웹사이트(반응형)</span>
+                                        <span>1,000만원 - 3,000만원</span>
+                                        <span>3개월 - 6개월</span>
+                                        <span>2026-06-04 09:20</span>
+                                    </li>
+                                </ul>
+
+                                <div class="pagination" id="inquiry-pgn"></div>
+                            </section>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <div id="modal"></div>
+        <!-- JS (lucide, chart.js, swiper) -->
+        <script src="/js/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="/js/script.js"></script>
+        <script src="/js/modal.js"></script>
+
+        <script>
+            //  주/월간 드롭다운
+            $("[data-period-dropdown] button").click(function () {
+                $(this).next("ul").toggleClass("active");
+            });
+            $("[data-period-dropdown] li").click(function () {
+                const $wrap = $(this).closest("[data-period-dropdown]");
+                $wrap.find("button span").text($(this).text().trim());
+                $wrap.find("ul").removeClass("active");
+            });
+
+            $(document).on("click", function (e) {
+                if (!$(e.target).closest("[data-period-dropdown]").length) {
+                    $("[data-period-dropdown] ul").removeClass("active");
+                }
+            });
+
+            // 체크박스 공통 함수
+            function checkState($box) {
+                const totalCount = $box.find(".cbx-item").length;
+                const checkedCount = $box.find(".cbx-item:checked").length;
+
+                $box.find(".check-all").prop("checked", totalCount > 0 && totalCount === checkedCount);
+
+                $box.find(".cbx-delete").toggleClass("active", checkedCount > 0);
+            }
+            // 전체 선택 클릭 시
+            $(document).on("change", ".check-all", function () {
+                const $box = $(this).closest(".cbx-board");
+                const isChecked = $(this).is(":checked");
+
+                $box.find(".cbx-item").prop("checked", isChecked);
+                checkState($box);
+            });
+
+            //  개별 체크박스 클릭 시
+            $(document).on("change", ".cbx-item", function () {
+                const $box = $(this).closest(".cbx-board");
+                checkState($box);
+            });
+
+            // 누적 방문자 차트
+            $(function () {
+                const chartElement = $(".visitor-chart")[0];
+
+                if (chartElement) {
+                    new Chart(chartElement, {
+                        type: "bar",
+                        data: {
+                            labels: [
+                                "2026.05.31",
+                                "2026.06.01",
+                                "2026.06.02",
+                                "2026.06.03",
+                                "2026.06.04",
+                                "2026.06.05",
+                                "2026.06.06",
+                            ],
+                            datasets: [
+                                {
+                                    type: "line",
+                                    label: "방문자",
+                                    data: [120, 80, 140, 60, 55, 0, 0],
+                                    borderColor: "#7CBAFB",
+                                    borderWidth: 3,
+                                    tension: 0.1,
+                                    pointRadius: 7,
+                                    pointBorderColor: "#3395FF",
+                                    pointBackgroundColor: "#fff",
+                                    order: 1,
+                                    clip: false,
+                                },
+
+                                {
+                                    type: "bar",
+                                    label: "MOBILE",
+                                    data: [70, 20, 40, 30, 20, 0, 0],
+                                    backgroundColor: "#7CBAFB",
+                                    borderSkipped: false,
+                                    stack: "visitorStack",
+                                    order: 2,
+                                    borderRadius: {
+                                        topLeft: 12,
+                                        topRight: 12,
+                                        bottomLeft: 12,
+                                        bottomRight: 12,
+                                    },
+                                },
+                                {
+                                    type: "bar",
+                                    label: "PC",
+                                    data: [50, 60, 100, 30, 35, 0, 0],
+                                    backgroundColor: "#3395FF",
+                                    borderSkipped: false,
+                                    stack: "visitorStack",
+                                    order: 2,
+                                    borderRadius: {
+                                        topLeft: 12,
+                                        topRight: 12,
+                                        bottomLeft: 12,
+                                        bottomRight: 12,
+                                    },
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    stacked: true,
+                                    grid: { display: false },
+                                },
+                                y: {
+                                    stacked: true,
+                                    min: 0,
+                                    max: 200,
+                                    ticks: {
+                                        stepSize: 50,
+                                    },
+                                },
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                },
+                            },
+                        },
+                    });
+                }
+
+                // 방문자 추이 도넛 차트
+                const donutChart = $(".donut-chart")[0];
+
+                if (donutChart) {
+                    new Chart(donutChart, {
+                        type: "doughnut",
+                        data: {
+                            labels: ["MOBILE", "PC"],
+                            datasets: [
+                                {
+                                    data: [41.9, 58.1],
+                                    backgroundColor: ["#7CBAFB", "#3395FF"],
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutout: "70%",
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                },
+                            },
+                        },
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

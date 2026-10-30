@@ -1,0 +1,85 @@
+<div class="sticky top-0 flex h-screen w-62.5 flex-col justify-between px-4 py-5">
+    <div>
+        <a href="/" class="flex h-17 items-center">
+            <h1 class="text-black-400 text-lg font-black">LOGO</h1>
+        </a>
+
+        <nav class="ad-gnb">
+            <ul class="ad-gnb-list">
+                <li class="ad-gnb-item">
+                    <div class="ad-gnb-title">
+                        <span>메인메뉴</span>
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <ul class="ad-snb">
+                        <li class="snb-list"><a href="/">홈</a></li>
+                    </ul>
+                </li>
+                <li class="ad-gnb-item">
+                    <div class="ad-gnb-title">
+                        <span>홈페이지 관리</span>
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <ul class="ad-snb">
+                        <li class="snb-list"><a href="#">배너관리</a></li>
+                        <li class="snb-list"><a href="#">팝업관리</a></li>
+
+                        <li class="snb-list"><a href="#">연혁관리</a></li>
+                        <li class="snb-list"><a href="#">공지사항 관리</a></li>
+                        <li class="snb-list"><a href="#">자주 묻는 질문 관리</a></li>
+                        <li class="snb-list"><a href="#">자료실 관리</a></li>
+                    </ul>
+                </li>
+                <li class="ad-gnb-item">
+                    <div class="ad-gnb-title">
+                        <span>운영 관리</span>
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                    <ul class="ad-snb">
+                        <li class="snb-list"><a href="#">문의 관리</a></li>
+                        <li class="snb-list"><a href="#">SNS 연동</a></li>
+                        <li class="snb-list"><a href="#">관리자 계정</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div>
+        <a href="#" class="flex gap-3 py-2 font-medium hover:rounded-lg hover:bg-blue-500/10">
+            <i data-lucide="log-out" class="size-5"></i>
+            <span>로그아웃</span>
+        </a>
+        <img src="/assets/images/icon/co-logo.png" class="w-37 object-contain" alt="코워커웹 로고" />
+    </div>
+</div>
+
+<script>
+    //  서브메뉴 열기
+    $(".ad-gnb-title").click(function (e) {
+        e.stopPropagation();
+        const $targetSnb = $(this).siblings(".ad-snb");
+        $(".ad-gnb-title").not(this).removeClass("active");
+        $(".ad-snb").not($targetSnb).removeClass("active");
+        $targetSnb.toggleClass("active");
+        $(this).toggleClass("active");
+    });
+    $(document).ready(function () {
+        const currentPath = window.location.pathname;
+        $(".snb-list a").each(function () {
+            const linkHref = $(this).attr("href");
+            const isHomeMatch = linkHref === "/" && (currentPath === "/" || currentPath === "");
+            const isNormalMatch = linkHref !== "#" && linkHref !== "/" && currentPath.includes(linkHref);
+
+            console.log(currentPath, "현재 경로 ");
+            console.log(linkHref, "href ");
+            if (linkHref === currentPath || isHomeMatch || isNormalMatch) {
+                $(this).closest(".snb-list").addClass("active");
+
+                const $gnbItem = $(this).closest(".ad-gnb-item");
+                $gnbItem.find(".ad-gnb-title").addClass("active");
+                $gnbItem.find(".ad-snb").addClass("active");
+            }
+        });
+    });
+</script>
